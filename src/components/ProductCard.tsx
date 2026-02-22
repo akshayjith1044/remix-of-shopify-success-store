@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Loader2 } from "lucide-react";
+import { ShoppingCart, Loader2, TrendingUp } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
@@ -37,37 +37,48 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
     <Link
       to={`/product/${node.handle}`}
       className="group block animate-fade-in"
-      style={{ animationDelay: `${index * 0.1}s` }}
+      style={{ animationDelay: `${index * 0.08}s` }}
     >
-      <div className="relative aspect-square overflow-hidden rounded-lg bg-secondary mb-4">
-        {image ? (
-          <img
-            src={image.url}
-            alt={image.altText || node.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-            <ShoppingCart className="h-8 w-8" />
+      <div className="card-hover rounded-xl overflow-hidden bg-card border border-border">
+        <div className="relative aspect-square overflow-hidden bg-secondary">
+          {image ? (
+            <img
+              src={image.url}
+              alt={image.altText || node.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+              <ShoppingCart className="h-8 w-8" />
+            </div>
+          )}
+          <div className="absolute top-3 left-3">
+            <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary/90 text-primary-foreground text-[10px] font-body font-semibold uppercase tracking-wider">
+              <TrendingUp className="h-3 w-3" />
+              Trending
+            </div>
           </div>
-        )}
-        <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-colors duration-300" />
-        <Button
-          onClick={handleAddToCart}
-          disabled={isLoading || !variant}
-          size="sm"
-          className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary text-primary-foreground hover:bg-primary/90"
-        >
-          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><ShoppingCart className="h-4 w-4 mr-1" />Add</>}
-        </Button>
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <Button
+            onClick={handleAddToCart}
+            disabled={isLoading || !variant}
+            size="sm"
+            className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 bg-primary text-primary-foreground hover:bg-primary/90"
+          >
+            {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><ShoppingCart className="h-4 w-4 mr-2" />Add to Cart</>}
+          </Button>
+        </div>
+        <div className="p-4">
+          <h3 className="font-display text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+            {node.title}
+          </h3>
+          <p className="text-xs text-muted-foreground mt-1 line-clamp-2 font-body">{node.description}</p>
+          <p className="text-lg font-display font-bold text-primary mt-2">
+            {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
+          </p>
+        </div>
       </div>
-      <h3 className="font-body text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-        {node.title}
-      </h3>
-      <p className="text-sm text-primary font-semibold mt-1">
-        {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
-      </p>
     </Link>
   );
 };
