@@ -1,12 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/HeroSection";
+import { ProductGrid } from "@/components/ProductGrid";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main className="pt-16">
+        <HeroSection />
+        <section id="products" className="container mx-auto px-6 py-16">
+          <div className="mb-10">
+            <h2 className="font-display text-3xl text-foreground mb-2">Our Collection</h2>
+            <p className="text-muted-foreground font-body">Handpicked for the discerning eye</p>
+          </div>
+          <ProductGrid />
+        </section>
+      </main>
+      <footer className="border-t border-border py-8 text-center">
+        <p className="text-sm text-muted-foreground font-body">© 2026 Luxe Store. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
