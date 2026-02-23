@@ -21,6 +21,7 @@ const AppContent = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Index />} />
+                  <Route path="/products" element={<Index />} />
         <Route path="/product/:handle" element={<ProductDetail />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
