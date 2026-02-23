@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { ProductGrid } from "@/components/ProductGrid";
-import { Zap } from "lucide-react";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -19,15 +19,7 @@ const Index = () => {
           <ProductGrid />
         </section>
       </main>
-      <footer className="border-t border-border py-10">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-primary" />
-            <span className="font-display text-sm font-semibold text-foreground">EmmigoExpress</span>
-          </div>
-          <p className="text-xs text-muted-foreground font-body">© 2026 emmigoexpress.com — All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

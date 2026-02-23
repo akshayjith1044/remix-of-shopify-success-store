@@ -21,6 +21,9 @@ export const Header = () => {
           <a href="#products" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
             All Products
           </a>
+          <Link to="/track-order" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
+            Track Order
+          </Link>
         </nav>
         <CartDrawer />
       </div>
