@@ -18,9 +18,9 @@ export const Header = () => {
           <Link to="/" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
             Trending
           </Link>
-          <a href="#products" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/products" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
             All Products
-          </a>
+          </Link>
           <Link to="/track-order" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
             Track Order
           </Link>
