@@ -18,7 +18,7 @@ const queryClient = new QueryClient();
 const AppContent = () => {
   useCartSync();
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/remix-of-shopify-success-store">
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/product/:handle" element={<ProductDetail />} />
