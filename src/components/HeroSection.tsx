@@ -1,4 +1,5 @@
 import { ArrowDown, Sparkles, TrendingUp, Truck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
   return (
@@ -22,14 +23,14 @@ export const HeroSection = () => {
           Curated trending products delivered to your door. We find the hottest niche products so you don't have to.
         </p>
 
-        <a
-          href="#products"
+        <Link
+          to="/products"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-body font-medium text-sm hover:bg-primary/90 transition-colors animate-fade-in"
           style={{ animationDelay: '0.3s' }}
         >
           Shop Trending
           <ArrowDown className="h-4 w-4" />
-        </a>
+        </Link>
 
         {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-6 mt-14 animate-fade-in" style={{ animationDelay: '0.4s' }}>
