@@ -11,6 +11,8 @@ import TermsOfService from "./pages/TermsOfService";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import TrackOrder from "./pages/TrackOrder";
+import Contact from "./pages/Contact";
+import Bundles from "./pages/Bundles";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,13 +23,15 @@ const AppContent = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Index />} />
-                  <Route path="/products" element={<Index />} />
+        <Route path="/products" element={<Index />} />
         <Route path="/product/:handle" element={<ProductDetail />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/shipping-policy" element={<ShippingPolicy />} />
         <Route path="/return-policy" element={<ReturnPolicy />} />
         <Route path="/track-order" element={<TrackOrder />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/bundles" element={<Bundles />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HashRouter>

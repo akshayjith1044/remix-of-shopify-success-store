@@ -21,8 +21,14 @@ export const Header = () => {
           <Link to="/products" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
             All Products
           </Link>
+          <Link to="/bundles" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
+            Bundles
+          </Link>
           <Link to="/track-order" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
             Track Order
+          </Link>
+          <Link to="/contact" className="text-sm font-body tracking-wide text-muted-foreground hover:text-foreground transition-colors">
+            Contact
           </Link>
         </nav>
         <CartDrawer />
