@@ -4,13 +4,15 @@ import { ShoppingCart, Loader2, TrendingUp } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
+import { BundleBadge } from "./BundleBadge";
 
 interface ProductCardProps {
   product: ShopifyProduct;
   index: number;
+  showBundleBadge?: boolean;
 }
 
-export const ProductCard = ({ product, index }: ProductCardProps) => {
+export const ProductCard = ({ product, index, showBundleBadge }: ProductCardProps) => {
   const addItem = useCartStore(state => state.addItem);
   const isLoading = useCartStore(state => state.isLoading);
   const { node } = product;
@@ -53,11 +55,12 @@ export const ProductCard = ({ product, index }: ProductCardProps) => {
               <ShoppingCart className="h-8 w-8" />
             </div>
           )}
-          <div className="absolute top-3 left-3">
+          <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary/90 text-primary-foreground text-[10px] font-body font-semibold uppercase tracking-wider">
               <TrendingUp className="h-3 w-3" />
               Trending
             </div>
+            {showBundleBadge && <BundleBadge />}
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <Button
