@@ -6,6 +6,16 @@ import type { ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
 import { BundleBadge } from "./BundleBadge";
 
+const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
+  "led-galaxy-projector": "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&q=80",
+  "portable-blender": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=600&q=80",
+  "posture-corrector": "https://images.unsplash.com/photo-1588776814546-1ffbb9b571cd?w=600&q=80",
+  "magnetic-phone-mount": "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=600&q=80",
+  "smart-water-bottle": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80",
+};
+
+const DEFAULT_FALLBACK = "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80";
+
 interface ProductCardProps {
   product: ShopifyProduct;
   index: number;
@@ -19,6 +29,9 @@ export const ProductCard = ({ product, index, showBundleBadge }: ProductCardProp
   const image = node.images.edges[0]?.node;
   const price = node.priceRange.minVariantPrice;
   const variant = node.variants.edges[0]?.node;
+
+  const imageUrl = image?.url || PRODUCT_FALLBACK_IMAGES[node.handle] || DEFAULT_FALLBACK;
+  const imageAlt = image?.altText || node.title;
 
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -43,18 +56,12 @@ export const ProductCard = ({ product, index, showBundleBadge }: ProductCardProp
     >
       <div className="card-hover rounded-xl overflow-hidden bg-card border border-border">
         <div className="relative aspect-square overflow-hidden bg-secondary">
-          {image ? (
-            <img
-              src={image.url}
-              alt={image.altText || node.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-              <ShoppingCart className="h-8 w-8" />
-            </div>
-          )}
+          <img
+            src={imageUrl}
+            alt={imageAlt}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-primary/90 text-primary-foreground text-[10px] font-body font-semibold uppercase tracking-wider">
               <TrendingUp className="h-3 w-3" />
