@@ -26,21 +26,6 @@ const bundleOptions = [
   { id: "triple", label: "3 Pack", qty: 3, discount: 20, tag: "Best Value" },
 ];
 
-const fakeReviews = [
-  { name: "Sarah M.", rating: 5, date: "2 weeks ago", text: "Absolutely love this product! Quality is amazing and it arrived super fast. Would definitely buy again." },
-  { name: "James K.", rating: 4, date: "1 month ago", text: "Great value for the price. Shipping was quick and the product matched the description perfectly." },
-  { name: "Emily R.", rating: 5, date: "1 month ago", text: "This exceeded my expectations! The bundle deal made it even better. Highly recommend to everyone." },
-  { name: "Mike D.", rating: 5, date: "2 months ago", text: "Bought the 3-pack bundle and couldn't be happier. Gave one as a gift and they loved it too!" },
-];
-
-const StarRating = ({ rating }: { rating: number }) => (
-  <div className="flex gap-0.5">
-    {Array.from({ length: 5 }).map((_, i) => (
-      <Star key={i} className={`h-3.5 w-3.5 ${i < rating ? 'fill-primary text-primary' : 'text-muted-foreground/30'}`} />
-    ))}
-  </div>
-);
-
 const ProductDetail = () => {
   const { handle } = useParams<{ handle: string }>();
   const [product, setProduct] = useState<ShopifyProduct["node"] | null>(null);
@@ -105,8 +90,6 @@ const ProductDetail = () => {
     toast.success(`Added ${bundle.qty}x to cart`, { description: product.title, position: "top-center" });
   };
 
-  const avgRating = (fakeReviews.reduce((a, r) => a + r.rating, 0) / fakeReviews.length).toFixed(1);
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -153,10 +136,6 @@ const ProductDetail = () => {
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <BundleBadge label="Bundle Available" />
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-body">
-                  <StarRating rating={Math.round(Number(avgRating))} />
-                  <span>{avgRating} ({fakeReviews.length} reviews)</span>
-                </div>
               </div>
 
               <h1 className="font-display text-3xl md:text-4xl text-foreground mb-4">{product.title}</h1>
@@ -276,42 +255,6 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-
-          {/* Reviews */}
-          <section className="mt-16 border-t border-border pt-12">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="font-display text-2xl font-bold text-foreground">Customer Reviews</h2>
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
-                <Star className="h-3.5 w-3.5 fill-primary text-primary" />
-                <span className="text-sm font-display font-semibold text-primary">{avgRating}</span>
-                <span className="text-xs text-muted-foreground font-body">({fakeReviews.length})</span>
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-4">
-              {fakeReviews.map((review, i) => (
-                <div key={i} className="rounded-xl border border-border bg-card p-5 animate-fade-in" style={{ animationDelay: `${i * 0.08}s` }}>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center font-display font-bold text-primary text-xs">
-                        {review.name[0]}
-                      </div>
-                      <div>
-                        <p className="font-display font-semibold text-sm text-foreground">{review.name}</p>
-                        <p className="text-[11px] text-muted-foreground font-body">{review.date}</p>
-                      </div>
-                    </div>
-                    <StarRating rating={review.rating} />
-                  </div>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed">{review.text}</p>
-                  <div className="flex items-center gap-1 mt-3 text-[11px] text-primary/70 font-body">
-                    <CheckCircle className="h-3 w-3" />
-                    Verified Purchase
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
         </div>
       </main>
       <Footer />
