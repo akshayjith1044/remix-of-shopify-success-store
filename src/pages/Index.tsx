@@ -1,7 +1,6 @@
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { ProductGrid } from "@/components/ProductGrid";
-import { BundleSection } from "@/components/BundleSection";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -19,7 +18,6 @@ const Index = () => {
           </div>
           <ProductGrid />
         </section>
-        <BundleSection />
       </main>
       <Footer />
     </div>
