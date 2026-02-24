@@ -10,6 +10,16 @@ import { ArrowLeft, ShoppingCart, Loader2, Gift, Star, CheckCircle } from "lucid
 import { toast } from "sonner";
 import { BundleBadge } from "@/components/BundleBadge";
 
+const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
+  "led-galaxy-projector": "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&q=80",
+  "portable-blender": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=600&q=80",
+  "posture-corrector": "https://images.unsplash.com/photo-1588776814546-1ffbb9b571cd?w=600&q=80",
+  "magnetic-phone-mount": "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=600&q=80",
+  "smart-water-bottle": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80",
+};
+
+const DEFAULT_FALLBACK = "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80";
+
 const bundleOptions = [
   { id: "single", label: "1 Pack", qty: 1, discount: 0, tag: "" },
   { id: "double", label: "2 Pack", qty: 2, discount: 10, tag: "Save 10%" },
@@ -105,12 +115,17 @@ const ProductDetail = () => {
           <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 font-body text-sm">
             <ArrowLeft className="h-4 w-4" /> Back to shop
           </Link>
+
           <div className="grid md:grid-cols-2 gap-12">
             {/* Images */}
             <div>
               <div className="aspect-square rounded-xl overflow-hidden bg-secondary mb-4 border border-border">
-                {images[selectedImage]?.node ? (
-                  <img src={images[selectedImage].node.url} alt={images[selectedImage].node.altText || product.title} className="w-full h-full object-cover" />
+                {images[selectedImage]?.node || PRODUCT_FALLBACK_IMAGES[product.handle] ? (
+                  <img 
+                    src={images[selectedImage]?.node.url || PRODUCT_FALLBACK_IMAGES[product.handle] || DEFAULT_FALLBACK} 
+                    alt={images[selectedImage]?.node.altText || product.title} 
+                    className="w-full h-full object-cover" 
+                  />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-muted-foreground">
                     <ShoppingCart className="h-12 w-12" />
@@ -153,7 +168,7 @@ const ProductDetail = () => {
                   <label className="block text-sm font-medium text-foreground mb-2 font-body">{option.name}</label>
                   <div className="flex flex-wrap gap-2">
                     {option.values.map((value) => {
-                      const variantIndex = variants.findIndex(v =>
+                      const variantIndex = variants.findIndex(v => 
                         v.node.selectedOptions.some(o => o.name === option.name && o.value === value)
                       );
                       const isSelected = variants[selectedVariantIndex]?.node.selectedOptions.some(
@@ -244,7 +259,7 @@ const ProductDetail = () => {
                     </div>
                   )}
                 </div>
-                <Button
+                <Button 
                   onClick={handleAddToCart}
                   disabled={isLoading || !selectedVariant?.availableForSale}
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
@@ -272,6 +287,7 @@ const ProductDetail = () => {
                 <span className="text-xs text-muted-foreground font-body">({fakeReviews.length})</span>
               </div>
             </div>
+
             <div className="grid sm:grid-cols-2 gap-4">
               {fakeReviews.map((review, i) => (
                 <div key={i} className="rounded-xl border border-border bg-card p-5 animate-fade-in" style={{ animationDelay: `${i * 0.08}s` }}>
