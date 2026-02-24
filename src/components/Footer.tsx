@@ -17,7 +17,6 @@ export const Footer = () => (
           <nav className="flex flex-col gap-2">
             <Link to="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors font-body">Home</Link>
             <Link to="/products" className="text-xs text-muted-foreground hover:text-foreground transition-colors font-body">All Products</Link>
-            <Link to="/bundles" className="text-xs text-muted-foreground hover:text-foreground transition-colors font-body">Bundles</Link>
           </nav>
         </div>
         <div>

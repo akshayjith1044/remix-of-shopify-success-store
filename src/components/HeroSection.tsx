@@ -40,12 +40,6 @@ export const HeroSection = () => {
               Shop Trending
               <ArrowDown className="h-4 w-4" />
             </Link>
-            <Link
-              to="/bundles"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg border border-primary/30 text-foreground font-body font-semibold text-sm hover:bg-primary/10 transition-colors"
-            >
-              View Bundles
-            </Link>
           </div>
 
           {/* Trust badges */}

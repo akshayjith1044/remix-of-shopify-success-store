@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "./ProductCard";
 import { Gift, Loader2 } from "lucide-react";
-import { Link } from "react-router-dom";
 
 export const BundleSection = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -36,12 +35,6 @@ export const BundleSection = () => {
           <h2 className="font-display text-3xl font-bold text-foreground">Bundle & Save</h2>
           <p className="text-sm text-muted-foreground font-body mt-2">Buy 2, get 1 free on select products. Mix and match!</p>
         </div>
-        <Link
-          to="/bundles"
-          className="text-sm text-primary hover:underline font-body hidden sm:block"
-        >
-          View all bundles →
-        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.slice(0, 4).map((product, index) => (
