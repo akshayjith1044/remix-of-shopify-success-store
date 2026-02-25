@@ -1,5 +1,4 @@
 import { ArrowDown, Sparkles, TrendingUp, Truck } from "lucide-react";
-import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 
 export const HeroSection = () => {
@@ -33,13 +32,13 @@ export const HeroSection = () => {
           </p>
 
           <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <Link
-              to="/products"
+            <button
+              onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-body font-semibold text-sm hover:bg-primary/90 transition-colors shadow-glow"
             >
               Shop Trending
               <ArrowDown className="h-4 w-4" />
-            </Link>
+            </button>
           </div>
 
           {/* Trust badges */}
