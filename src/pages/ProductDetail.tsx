@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ShoppingCart, Loader2, Gift, Star, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
 import { BundleBadge } from "@/components/BundleBadge";
+import { ProductVideos } from "@/components/ProductVideos";
+import { ProductReviews } from "@/components/ProductReviews";
 
 const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
   "led-galaxy-projector": "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&q=80",
@@ -255,6 +257,12 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
+
+          {/* UGC Videos */}
+          <ProductVideos productHandle={product.handle} />
+
+          {/* Customer Reviews */}
+          <ProductReviews productHandle={product.handle} />
         </div>
       </main>
       <Footer />
