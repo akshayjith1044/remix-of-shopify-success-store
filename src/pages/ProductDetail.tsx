@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { BundleBadge } from "@/components/BundleBadge";
 import { ProductVideos } from "@/components/ProductVideos";
 import { ProductReviews } from "@/components/ProductReviews";
+import { TrustBadges } from "@/components/TrustBadges";
 
 const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
   "led-galaxy-projector": "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&q=80",
@@ -255,6 +256,7 @@ const ProductDetail = () => {
                   )}
                 </Button>
               </div>
+              <TrustBadges />
             </div>
           </div>
 

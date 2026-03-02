@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { Zap } from "lucide-react";
+import { TrustBadges } from "./TrustBadges";
 
 export const Footer = () => (
   <footer className="border-t border-border py-10">
     <div className="container mx-auto px-6">
+      <TrustBadges />
       <div className="grid gap-8 sm:grid-cols-4 mb-8">
         <div>
           <div className="flex items-center gap-2 mb-3">
