@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { BundleBadge } from "@/components/BundleBadge";
 import { ProductVideos } from "@/components/ProductVideos";
 import { ProductReviews } from "@/components/ProductReviews";
+import { useProductReviews } from "@/hooks/useProductReviews";
 import { TrustBadges } from "@/components/TrustBadges";
 
 const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
@@ -38,6 +39,7 @@ const ProductDetail = () => {
   const [selectedBundle, setSelectedBundle] = useState("single");
   const addItem = useCartStore(state => state.addItem);
   const isLoading = useCartStore(state => state.isLoading);
+  const { data: reviews } = useProductReviews(handle || "");
 
   useEffect(() => {
     if (!handle) return;
@@ -138,7 +140,9 @@ const ProductDetail = () => {
               <ProductVideos productHandle={product.handle} />
 
               {/* Customer Reviews */}
-              <ProductReviews productHandle={product.handle} />
+              <div id="product-reviews">
+                <ProductReviews productHandle={product.handle} />
+              </div>
             </div>
 
             {/* Details */}
@@ -147,7 +151,25 @@ const ProductDetail = () => {
                 <BundleBadge label="Bundle Available" />
               </div>
 
-              <h1 className="font-display text-3xl md:text-4xl text-foreground mb-4">{product.title}</h1>
+              <h1 className="font-display text-3xl md:text-4xl text-foreground mb-2">{product.title}</h1>
+              {reviews && reviews.length > 0 && (
+                <button
+                  onClick={() => document.getElementById('product-reviews')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="flex items-center gap-1.5 mb-4 group"
+                >
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`h-4 w-4 ${i < Math.round(reviews.reduce((s, r) => s + r.rating, 0) / reviews.length) ? "fill-primary text-primary" : "text-muted-foreground/30"}`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm font-body text-muted-foreground group-hover:text-primary transition-colors">
+                    {(reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)} ({reviews.length} {reviews.length === 1 ? 'review' : 'reviews'})
+                  </span>
+                </button>
+              )}
               <p className="text-muted-foreground font-body leading-relaxed mb-6">{product.description}</p>
 
               {/* Options */}
