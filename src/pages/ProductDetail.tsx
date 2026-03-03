@@ -4,7 +4,7 @@ import {  fetchProductByHandle } from "@/lib/products";
 import type { Product } from "@/lib/products";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-Fix ProductDetail.tsx type syntax errorimport { ArrowLeft, ShoppingCart, Loader2, Gift, Star, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { BundleBadge } from "@/components/BundleBadge";
 import { ProductVideos } from "@/components/ProductVideos";
