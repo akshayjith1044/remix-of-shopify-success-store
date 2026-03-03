@@ -138,7 +138,9 @@ const ProductDetail = () => {
               <ProductVideos productHandle={product.handle} />
 
               {/* Customer Reviews */}
-              <ProductReviews productHandle={product.handle} />
+              <div id="product-reviews">
+                <ProductReviews productHandle={product.handle} />
+              </div>
             </div>
 
             {/* Details */}
