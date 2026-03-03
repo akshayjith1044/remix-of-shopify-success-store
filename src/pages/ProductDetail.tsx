@@ -133,6 +133,12 @@ const ProductDetail = () => {
                   ))}
                 </div>
               )}
+
+              {/* UGC Videos */}
+              <ProductVideos productHandle={product.handle} />
+
+              {/* Customer Reviews */}
+              <ProductReviews productHandle={product.handle} />
             </div>
 
             {/* Details */}
