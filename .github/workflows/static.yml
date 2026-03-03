@@ -33,24 +33,4 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_SUPABASE_URL: https://wzzixqudfbiofhpkkwvk.supabase.co
-          VITE_SUPABASE_PUBLISHABLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6eml4cXVkZmJpb2ZocGtrd3ZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2NTAyNzYsImV4cCI6MjA1NDIyNjI3Nn0.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            VITE_SUPABASE_URL: https://rqkatzjznnkosczbckdt.supabase.co
