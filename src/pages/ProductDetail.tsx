@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { BundleBadge } from "@/components/BundleBadge";
 import { ProductVideos } from "@/components/ProductVideos";
 import { ProductReviews } from "@/components/ProductReviews";
+import { useProductReviews } from "@/hooks/useProductReviews";
 import { TrustBadges } from "@/components/TrustBadges";
 
 const PRODUCT_FALLBACK_IMAGES: Record<string, string> = {
