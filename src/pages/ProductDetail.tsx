@@ -133,6 +133,12 @@ const ProductDetail = () => {
                   ))}
                 </div>
               )}
+
+              {/* UGC Videos */}
+              <ProductVideos productHandle={product.handle} />
+
+              {/* Customer Reviews */}
+              <ProductReviews productHandle={product.handle} />
             </div>
 
             {/* Details */}
@@ -260,11 +266,6 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          {/* UGC Videos */}
-          <ProductVideos productHandle={product.handle} />
-
-          {/* Customer Reviews */}
-          <ProductReviews productHandle={product.handle} />
         </div>
       </main>
       <Footer />
