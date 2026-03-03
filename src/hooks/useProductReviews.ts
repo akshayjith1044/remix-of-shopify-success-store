@@ -1,6 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-
 export interface ProductReview {
   id: string;
   product_handle: string;
@@ -44,22 +41,6 @@ const STATIC_REVIEWS: Record<string, ProductReview[]> = {
 };
 
 export function useProductReviews(productHandle: string) {
-  return useQuery({
-    queryKey: ["product-reviews", productHandle],
-    queryFn: async () => {
-      try {
-        const { data, error } = await supabase
-          .from("product_reviews")
-          .select("*")
-          .eq("product_handle", productHandle)
-          .order("review_date", { ascending: false });
-        if (error) throw error;
-        if (data && data.length > 0) return data as ProductReview[];
-      } catch {
-        // fall through to static reviews
-      }
-      return STATIC_REVIEWS[productHandle] || STATIC_REVIEWS["led-galaxy-projector"];
-    },
-    enabled: !!productHandle,
-  });
+  const reviews = STATIC_REVIEWS[productHandle] || STATIC_REVIEWS["led-galaxy-projector"];
+  return { data: reviews, isLoading: false, error: null };
 }
