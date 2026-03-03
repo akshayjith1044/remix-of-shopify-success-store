@@ -39,6 +39,7 @@ const ProductDetail = () => {
   const [selectedBundle, setSelectedBundle] = useState("single");
   const addItem = useCartStore(state => state.addItem);
   const isLoading = useCartStore(state => state.isLoading);
+  const { data: reviews } = useProductReviews(handle || "");
 
   useEffect(() => {
     if (!handle) return;
