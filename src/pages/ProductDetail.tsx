@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchProductByHandle } from "@/lib/shopify";
-import { useCartStore } from "@/stores/cartStore";
-import type { ShopifyProduct } from "@/lib/shopify";
+import {  fetchProductByHandle } from "@/lib/products";
+import type { Product } from "@/lib/products";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -32,7 +31,7 @@ const bundleOptions = [
 
 const ProductDetail = () => {
   const { handle } = useParams<{ handle: string }>();
-  const [product, setProduct] = useState<ShopifyProduct["node"] | null>(null);
+  const [product, setProduct] = useState<| nProduct ull>(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -77,7 +76,7 @@ const ProductDetail = () => {
   const images = product.images.edges;
   const variants = product.variants.edges;
   const selectedVariant = variants[selectedVariantIndex]?.node;
-  const shopifyProduct: ShopifyProduct = { node: product };
+  const Product: Product = { node: product };
   const bundle = bundleOptions.find(b => b.id === selectedBundle)!;
   const basePrice = parseFloat(selectedVariant?.price.amount || '0');
   const discountedTotal = (basePrice * bundle.qty * (1 - bundle.discount / 100));
@@ -85,7 +84,7 @@ const ProductDetail = () => {
   const handleAddToCart = async () => {
     if (!selectedVariant) return;
     await addItem({
-      product: shopifyProduct,
+      product: Product,
       variantId: selectedVariant.id,
       variantTitle: selectedVariant.title,
       price: selectedVariant.price,
