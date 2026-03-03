@@ -4,7 +4,8 @@ import { Footer } from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AdminVideos } from "@/components/admin/AdminVideos";
 import { AdminReviews } from "@/components/admin/AdminReviews";
-import { Film, Star, ShieldCheck } from "lucide-react";
+import { AdminProducts } from "@/components/admin/AdminProducts";
+import { Film, Star, ShieldCheck, Package } from "lucide-react";
 
 const Admin = () => {
   return (
@@ -17,8 +18,11 @@ const Admin = () => {
             <h1 className="font-display text-3xl font-bold text-foreground">Admin Panel</h1>
           </div>
 
-          <Tabs defaultValue="videos" className="w-full">
+          <Tabs defaultValue="products" className="w-full">
             <TabsList className="mb-6">
+              <TabsTrigger value="products" className="gap-2">
+                <Package className="h-4 w-4" /> Products
+              </TabsTrigger>
               <TabsTrigger value="videos" className="gap-2">
                 <Film className="h-4 w-4" /> UGC Videos
               </TabsTrigger>
@@ -27,6 +31,9 @@ const Admin = () => {
               </TabsTrigger>
             </TabsList>
 
+            <TabsContent value="products">
+              <AdminProducts />
+            </TabsContent>
             <TabsContent value="videos">
               <AdminVideos />
             </TabsContent>
