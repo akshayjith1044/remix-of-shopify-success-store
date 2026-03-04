@@ -34,4 +34,5 @@ jobs:
         run: npm run build
         env:
             VITE_SUPABASE_URL: https://rqkatzjznnkosczbckdt.supabase.co
-              VITE_SUPABASE_PUBLISHABLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxa2F0empubmtvc2N6YmNrZHQiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczMzIxODM1MywiZXhwIjoyMDQ4Nzk0MzUzfQ.0y5qnOVRVUdvV4Xwpqc9Sl2n_kLKlCEoebKZjNLFWKw
+
+                            VITE_SUPABASE_PUBLISHABLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxa2F0empubmtvc2N6YmNrZHQiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczMzIxODM1MywiZXhwIjoyMDQ4Nzk0MzUzfQ.0y5qnOVRVUdvV4Xwpqc9Sl2n_kLKlCEoebKZjNLFWKw
